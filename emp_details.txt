@@ -1,0 +1,143 @@
+Microsoft Windows [Version 10.0.19041.804]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\Users\DELL>cd/
+
+C:\>c:
+
+C:\>cd "program files"
+
+C:\Program Files>cd mysql
+cd
+C:\Program Files\MySQL>mysql -u root -p -h localhost
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show database
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database
+show databases' at line 1
+mysql> show  databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| interior           |
+| matrimony          |
+| mysql              |
+| performance_schema |
+| sakila             |
+| shopping_cart      |
+| sys                |
+| trv11              |
+| world              |
+| xworkz             |
++--------------------+
+11 rows in set (0.14 sec)
+
+mysql> create database employee _details
+    -> create database employee _details;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '_details
+create database employee _details' at line 1
+mysql> create database employee _details;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '_details' at line 1
+mysql> create Database employee_details;
+Query OK, 1 row affected (0.38 sec)
+
+mysql> use employee_details;
+Database changed
+mysql> create table Dept(
+    -> deptno int not null primary key,
+    -> dname varchar(20) not null,
+    -> location varchar(30) not null);
+Query OK, 0 rows affected (1.25 sec)
+
+mysql> create table Emp(
+    -> empno int not null primary key,
+    -> ename varchar(20) not null,
+    -> job varchar(20) not null,
+    -> mge int,
+    -> hireDate date,
+    -> sal decimal(10,2),
+    -> comm decimal(10,2),
+    -> deptno int not null,
+    -> foreign key(deptno) references Dept(deptno));
+Query OK, 0 rows affected (2.23 sec)
+
+mysql> desc Emp;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| empno    | int           | NO   | PRI | NULL    |       |
+| ename    | varchar(20)   | NO   |     | NULL    |       |
+| job      | varchar(20)   | NO   |     | NULL    |       |
+| mge      | int           | YES  |     | NULL    |       |
+| hireDate | date          | YES  |     | NULL    |       |
+| sal      | decimal(10,2) | YES  |     | NULL    |       |
+| comm     | decimal(10,2) | YES  |     | NULL    |       |
+| deptno   | int           | NO   | MUL | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+8 rows in set (0.06 sec)
+
+mysql> desc Dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| deptno   | int         | NO   | PRI | NULL    |       |
+| dname    | varchar(20) | NO   |     | NULL    |       |
+| location | varchar(30) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table Emp change mge mgr int;
+Query OK, 0 rows affected (1.31 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Emp;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| empno    | int           | NO   | PRI | NULL    |       |
+| ename    | varchar(20)   | NO   |     | NULL    |       |
+| job      | varchar(20)   | NO   |     | NULL    |       |
+| mgr      | int           | YES  |     | NULL    |       |
+| hireDate | date          | YES  |     | NULL    |       |
+| sal      | decimal(10,2) | YES  |     | NULL    |       |
+| comm     | decimal(10,2) | YES  |     | NULL    |       |
+| deptno   | int           | NO   | MUL | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into Dept values(10,'accounting','newyork'),
+    -> (20,'research','dallas'),
+    -> (30,'sales','chicago'),
+    -> (40,'operation','baston'),
+    -> (50,'production','India'),
+    -> (60,'marketing','bangalore'),
+    -> (70,'finance','mumbai');
+Query OK, 7 rows affected (0.25 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from Dept;
++--------+------------+-----------+
+| deptno | dname      | location  |
++--------+------------+-----------+
+|     10 | accounting | newyork   |
+|     20 | research   | dallas    |
+|     30 | sales      | chicago   |
+|     40 | operation  | baston    |
+|     50 | production | India     |
+|     60 | marketing  | bangalore |
+|     70 | finance    | mumbai    |
++--------+------------+-----------+
+7 rows in set (0.00 sec)
